@@ -4,6 +4,12 @@
 # MAGIC AutoML can be used both via the user interface and via a Python-based API.
 # MAGIC 
 # MAGIC In this demonstration, we're going to develop a baseline model using the Python API.
+# MAGIC 
+# MAGIC ##### Objectives
+# MAGIC 1. Set up and run an experiment
+# MAGIC 1. Evaluate the results
+# MAGIC 1. Register the best model
+# MAGIC 1. Use the model to perform batch inference
 
 # COMMAND ----------
 
@@ -43,7 +49,7 @@ model = automl.regress(
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ### Register a model
+# MAGIC ## Register a model
 # MAGIC 
 # MAGIC Once the AutoML experiment is done, we can identify the best model from the experiment and register that model to the MLflow Model Registry.
 

@@ -1,6 +1,22 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC ### Load data
+# MAGIC # Creating an AutoML Experiment - Python API
+# MAGIC AutoML can be used both via the user interface and via a Python-based API.
+# MAGIC 
+# MAGIC In this demonstration, we're going to develop a baseline model using the Python API.
+# MAGIC 
+# MAGIC ##### Objectives
+# MAGIC 1. Set up and run an experiment
+# MAGIC 1. Evaluate the results
+# MAGIC 1. Register the best model
+# MAGIC 1. Use the model to perform batch inference
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ## Classroom Setup
+# MAGIC 
+# MAGIC First, we'll run the `Classroom-Setup` notebook to set up our environment.
 
 # COMMAND ----------
 
@@ -8,15 +24,15 @@
 
 # COMMAND ----------
 
-airbnb_data = spark.read.parquet(input_path)
-trainDF, testDF = airbnb_data.randomSplit([.8, .2], seed=42)
+# MAGIC %md
+# MAGIC ### Set up and run the experiment
+# MAGIC 
+# MAGIC We will set up a regression experiment with our AirBnB dataset, with `price` as the target column and RMSE as the metric.
 
 # COMMAND ----------
 
-# MAGIC %md
-# MAGIC ### Set up and run an AutoML experiment
-# MAGIC 
-# MAGIC We will set up a regression experiment with our AirBnB dataset, with `price` as the target column and RMSE as the metric.
+airbnb_data = spark.read.parquet(input_path)
+trainDF, testDF = airbnb_data.randomSplit([.8, .2], seed=42)
 
 # COMMAND ----------
 
@@ -33,7 +49,7 @@ model = automl.regress(
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ### Register a Model
+# MAGIC ## Register a model
 # MAGIC 
 # MAGIC Once the AutoML experiment is done, we can identify the best model from the experiment and register that model to the MLflow Model Registry.
 
